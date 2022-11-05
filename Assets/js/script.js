@@ -5,6 +5,18 @@ var todayContainerEl = document.querySelector('#today-weather');
 var fiveDayContainerEl = document.querySelector('#five-day-weather');
 var APIKey = "032e48c7aceea9c38aa695542f70d0af";
 
+// Functionality for submit the city
+function formSubmitCity(e) {
+    e.preventDefault();
+    var cityName = cityInputEl.value.trim();
+    // User type a city name
+    if (cityName) {
+        getUsersLonLat(cityName);
+    } else {
+        alert('Please enter a city name');
+    }
+}
+
 //  Functionality to get users city
 var getUsersLonLat = function (userCity) {
     var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + userCity + '&appid=' + APIKey;
@@ -29,3 +41,5 @@ var getUsersLonLat = function (userCity) {
         });
 };
 
+// Event listener to submit the city
+cityFormEl.addEventListener('submit', formSubmitCity);
