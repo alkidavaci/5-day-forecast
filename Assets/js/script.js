@@ -17,7 +17,7 @@ function formSubmitCity(e) {
     }
 }
 
-//  Functionality to get users city
+//  Functionality to get users weather data from the input city name
 var getUsersLonLat = function (userCity) {
     var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + userCity + '&appid=' + APIKey;
 
@@ -39,6 +39,25 @@ var getUsersLonLat = function (userCity) {
         .catch(function (error) {
             alert('Unable to connect to Open Weather Map');
         });
+};
+
+//  Functionality to get users weather data from the city's latitude and longitude
+var getUsersCity = function (userCityLat, userCityLon) {
+    var apiLUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + userCityLat + '&lon=' + userCityLon + '&appid=' + APIKey;
+
+fetch(apiLUrl)
+    .then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                console.log(data)                         
+            });
+        } else {
+            alert('Error: ' + response.statusText);
+        }
+    })
+    .catch(function (error) {
+        alert('Unable to connect to Open Weather Map');
+    });
 };
 
 // Event listener to submit the city
