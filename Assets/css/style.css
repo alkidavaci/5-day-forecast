@@ -1,0 +1,41 @@
+:root {
+  --primary:white;
+  --sun-light: #e8f0af;
+  --dark: #1d0e46;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--primary);
+  margin: 0;
+  padding: 0;
+  font-family: "IBM Plex Sans", sans-serif;
+  color: var(--dark);
+  line-height: 1.5;
+  font-size: 16px;
+  min-height: 100vh
+}
+header{
+ text-align: center;
+ background-color:var(--sun-light);
+}
+h1{
+font-size: 5em;
+}
+main {
+  margin: 10px auto;
+  width: 94%;
+}
+p {
+  font-size: 1.3rem;
+}
+#city-form{
+  border: solid 2px var(--dark);
+  padding: 5px;
+}
+.btn-primary{
+  margin-top: 5px;
+}
