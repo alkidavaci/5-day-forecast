@@ -5,6 +5,13 @@ var todayContainerEl = document.querySelector('#today-weather');
 var fiveDayContainerEl = document.querySelector('#five-day-weather');
 var APIKey = "032e48c7aceea9c38aa695542f70d0af";
 
+// Functionality from Kelvin to Fahrenheit
+function kelvinToFahrenheit (k){
+    var fahrenheit = 1.8*(k -273) + 32;
+    return fahrenheit.toFixed(2);
+ }
+ 
+
 // Functionality for submit the city
 function formSubmitCity(e) {
     e.preventDefault();
