@@ -11,6 +11,11 @@ function kelvinToFahrenheit (k){
     return fahrenheit.toFixed(2);
  }
  
+// Functionality from MPS to MPH
+function mpsToMph(mps){
+    var mph = mps*2.23694;
+    return mph.toFixed(2);
+}
 
 // Functionality for submit the city
 function formSubmitCity(e) {
