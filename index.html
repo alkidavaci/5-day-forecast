@@ -1,15 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="./Assets/css/style.css">
     <title>5 Day Forecast</title>
 </head>
+
 <body>
 
-    
-</body>
-<script src="./Assets/js/script.js"></script>
+    <body>
+        <header>
+            <h1>5 Day Forecast</h1>
+            <p>Check weather before you plan !!!</p>
+        </header>
+
+
+        <main class="flex-row justify-space-between">
+            <div class="col-12 col-md-3">
+
+                <form id="city-form">
+                    <div class="card">
+                        <h3 class="card-title">Search for a City:</h3>
+                        <input name="city" id="city" type="text" class="form-input" />
+                        <button type="button" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+
+                <form id="cities">
+                    <div class="card" id="city-buttons">
+                        <!-- Will add all search cities -->
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-12 col-md-9">
+                <!-- will display today's weather -->
+                <div id="today-weather" class="weather-container"></div>
+                <!-- will display 5 day weather -->
+                <div id="5day-weather" class="weather-container"></div>
+            </div>
+        </main>
+
+    </body>
+    <script src="./Assets/js/script.js"></script>
+
 </html>
