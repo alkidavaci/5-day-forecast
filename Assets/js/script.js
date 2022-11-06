@@ -1,9 +1,13 @@
+// Declare an array of objects from local storage 
+var newCities = JSON.parse(localStorage.getItem("newCity"))||[];
+
 // Define variable
 var cityFormEl = document.querySelector('#city-form');
 var cityInputEl = document.querySelector('#city');
 var todayContainerEl = document.querySelector('#today-weather');
 var fiveDayContainerEl = document.querySelector('#five-day-weather');
 var fiveDayH2 = document.querySelector('#five-day-h')
+var citiesContainerEl = document.querySelector('#cities')
 var APIKey = "032e48c7aceea9c38aa695542f70d0af";
 
 // Functionality from Kelvin to Fahrenheit
@@ -22,9 +26,10 @@ function mpsToMph(mps) {
 function formSubmitCity(e) {
     e.preventDefault();
     var cityName = cityInputEl.value.trim();
+    
     // User type a city name
     if (cityName) {
-        getUsersLonLat(cityName);
+        getUsersLonLat(cityName);         
     } else {
         alert('Please enter a city name');
     }
@@ -32,7 +37,8 @@ function formSubmitCity(e) {
 
 //Display current day data
 function displayTodayData(data) {
-    
+     storeCities(data); 
+
     // Set attribute for div id=today-weather
     todayContainerEl.setAttribute("class", "today-weather")
 
@@ -40,6 +46,7 @@ function displayTodayData(data) {
     var cityDisplayEl = document.createElement('h2');
     cityDisplayEl.textContent = data.city.name;
     todayContainerEl.appendChild(cityDisplayEl);
+     
 
     // Create span tag, place text city name, append tag in the h2
     var dateDisplayEl = document.createElement('span');
@@ -169,8 +176,6 @@ var getUsersCity = function (userCityLat, userCityLon) {
                         displayFiveData(data);
                     }
 
-
-
                 });
             } else {
                 alert('Error: ' + response.statusText);
@@ -180,6 +185,16 @@ var getUsersCity = function (userCityLat, userCityLon) {
             alert('Unable to connect to Open Weather Map');
         });
 };
+
+function storeCities(data){
+
+    var newCityLower = data.city.name   
+    // Push in array new city
+   newCities.push(newCityLower)
+     // Set city name in local storage
+     localStorage.setItem("newCity", newCities)
+    }
+
 
 // Event listener to submit the city
 cityFormEl.addEventListener('submit', formSubmitCity);
