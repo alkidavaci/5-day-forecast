@@ -31,7 +31,9 @@ function formSubmitCity(e) {
 
 //Display current day data
 function displayTodayData(data) {
-     
+    
+    // Set attribute for div id=today-weather
+    todayContainerEl.setAttribute("class", "weather-container")
 
     // Create h2 tag, place text city name, append tag in the div id=today-weather
     var cityDisplayEl = document.createElement('h2');
@@ -66,8 +68,8 @@ function displayTodayData(data) {
     var humidityDisplayEl = document.createElement('h4');
     humidityDisplayEl.textContent = 'Humidity: ' + data.list[0].main.humidity + ' \u{0025}';
     todayContainerEl.appendChild(humidityDisplayEl);
-
 }
+
 //  Functionality to get users weather data from the input city name
 var getUsersLonLat = function (userCity) {
     var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + userCity + '&appid=' + APIKey;

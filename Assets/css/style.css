@@ -39,3 +39,8 @@ p {
 .btn-primary{
   margin-top: 5px;
 }
+.weather-container{
+ border: 2px solid  var(--dark);
+ padding-left: 20px;
+ padding-bottom: 20px;
+}
