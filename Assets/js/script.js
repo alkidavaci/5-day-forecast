@@ -70,6 +70,43 @@ function displayTodayData(data) {
     todayContainerEl.appendChild(humidityDisplayEl);
 }
 
+// Display five day data
+function displayFiveData(data) {
+    for(let i = 1; i < 6; i++){
+    var fiveDayEl = document.createElement('div');
+    
+
+    // Create span tag, place text city name, append tag in the h2
+    var dateDisplayEl = document.createElement('h3');
+    dateDisplayEl.textContent = " (" + moment(data.list[i].dt_txt).format('L') + ")";
+    fiveDayEl.appendChild(dateDisplayEl);
+
+    // Create img tag inside a span tag, set attribute src the link for icon, append span tag in the h2
+    var iconDisplayEl = document.createElement('img');
+    var iconCode = data.list[i].weather[0].icon;
+    var iconUrl = "http://openweathermap.org/img/wn/" + iconCode + "@2x.png";
+    iconDisplayEl.setAttribute('src', iconUrl);
+    fiveDayEl.appendChild(iconDisplayEl);
+    
+    // Create h3 tag, place text temperature in Fahrenheit, append tag in the h3            
+    var tempDisplayEl = document.createElement('h4');
+    tempDisplayEl.textContent = 'Temp: ' + kelvinToFahrenheit(data.list[i].main.temp) + ' \u{2109}';
+    fiveDayEl.appendChild(tempDisplayEl);
+
+    // Create h3 tag, place text wind in MPH, append tag in the h3 
+    var windDisplayEl = document.createElement('h4');
+    windDisplayEl.textContent = 'Wind: ' + mpsToMph(data.list[i].wind.speed) + ' MPH';
+    fiveDayEl.appendChild(windDisplayEl);
+
+    // Create h3 tag, place text humidity percentage, append tag in the h3 
+    var humidityDisplayEl = document.createElement('h4');
+    humidityDisplayEl.textContent = 'Humidity: ' + data.list[i].main.humidity + ' \u{0025}';
+    fiveDayEl.appendChild(humidityDisplayEl);
+
+    fiveDayContainerEl.appendChild(fiveDayEl);
+}
+}
+
 //  Functionality to get users weather data from the input city name
 var getUsersLonLat = function (userCity) {
     var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + userCity + '&appid=' + APIKey;
@@ -115,6 +152,17 @@ var getUsersCity = function (userCityLat, userCityLon) {
                         todayContainerEl.innerHTML = "";
                         displayTodayData(data);
                     }
+
+                       // If div id=five-day-weather is empty, display five data
+                       if (fiveDayContainerEl === "") {
+                        displayFiveData(data);
+                    }
+                    else {
+                        // Empty div id=five-day-weather than display five data
+                        fiveDayContainerEl.innerHTML = "";
+                        displayFiveData(data);
+                    }
+
 
 
                 });
