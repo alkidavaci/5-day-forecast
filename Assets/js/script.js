@@ -3,6 +3,7 @@ var cityFormEl = document.querySelector('#city-form');
 var cityInputEl = document.querySelector('#city');
 var todayContainerEl = document.querySelector('#today-weather');
 var fiveDayContainerEl = document.querySelector('#five-day-weather');
+var fiveDayH2 = document.querySelector('#five-day-h')
 var APIKey = "032e48c7aceea9c38aa695542f70d0af";
 
 // Functionality from Kelvin to Fahrenheit
@@ -33,7 +34,7 @@ function formSubmitCity(e) {
 function displayTodayData(data) {
     
     // Set attribute for div id=today-weather
-    todayContainerEl.setAttribute("class", "weather-container")
+    todayContainerEl.setAttribute("class", "today-weather")
 
     // Create h2 tag, place text city name, append tag in the div id=today-weather
     var cityDisplayEl = document.createElement('h2');
@@ -72,13 +73,18 @@ function displayTodayData(data) {
 
 // Display five day data
 function displayFiveData(data) {
+     // Set attribute for div id=today-weather
+     fiveDayContainerEl.setAttribute("class", "five-day-weather")
+     fiveDayH2.classList.remove('hidden');
+        
+      
     for(let i = 1; i < 6; i++){
     var fiveDayEl = document.createElement('div');
     
 
     // Create span tag, place text city name, append tag in the h2
     var dateDisplayEl = document.createElement('h3');
-    dateDisplayEl.textContent = " (" + moment(data.list[i].dt_txt).format('L') + ")";
+    dateDisplayEl.textContent = moment(data.list[i].dt_txt).format('L');
     fiveDayEl.appendChild(dateDisplayEl);
 
     // Create img tag inside a span tag, set attribute src the link for icon, append span tag in the h2

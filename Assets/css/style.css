@@ -1,5 +1,5 @@
 :root {
-  --primary:white;
+  --primary: rgb(246, 242, 242);
   --sun-light: #e8f0af;
   --dark: #1d0e46;
 }
@@ -14,33 +14,70 @@ body {
   padding: 0;
   font-family: "IBM Plex Sans", sans-serif;
   color: var(--dark);
-  line-height: 1.5;
+  line-height: 1.5em;
   font-size: 16px;
   min-height: 100vh
 }
-header{
- text-align: center;
- background-color:var(--sun-light);
+
+header {
+  text-align: center;
+  background-color: var(--sun-light);
 }
-h1{
-font-size: 5em;
+
+h1 {
+  font-size: 5em;
 }
+
+h2 {
+  align-self: flex-start;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
 main {
   margin: 10px auto;
   width: 94%;
 }
+
 p {
   font-size: 1.3rem;
 }
-#city-form{
+
+#city-form {
   border: solid 2px var(--dark);
   padding: 5px;
 }
-.btn-primary{
+
+.btn-primary {
   margin-top: 5px;
 }
-.weather-container{
- border: 2px solid  var(--dark);
- padding-left: 20px;
- padding-bottom: 20px;
+
+.today-weather {
+  border: 2px solid var(--dark);
+  padding: 30px;
+}
+
+.five-day-weather {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+
+  align-items: center;
+}
+
+.five-day-weather div {
+  background-color: var(--dark);
+  color: var(--primary);
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.hidden {
+  display: none;
+}
+#five-day-h{
+  margin: 20px 0;
 }
