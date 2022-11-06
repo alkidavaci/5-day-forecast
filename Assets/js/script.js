@@ -31,30 +31,41 @@ function formSubmitCity(e) {
 
 //Display current day data
 function displayTodayData(data) {
+     
+
     // Create h2 tag, place text city name, append tag in the div id=today-weather
     var cityDisplayEl = document.createElement('h2');
-    cityDisplayEl.textContent = data.city.name
-    todayContainerEl.appendChild(cityDisplayEl)
+    cityDisplayEl.textContent = data.city.name;
+    todayContainerEl.appendChild(cityDisplayEl);
 
     // Create span tag, place text city name, append tag in the h2
     var dateDisplayEl = document.createElement('span');
     dateDisplayEl.textContent = " (" + moment(data.list[0].dt_txt).format('L') + ")";
-    cityDisplayEl.appendChild(dateDisplayEl)
+    cityDisplayEl.appendChild(dateDisplayEl);
 
+    // Create img tag inside a span tag, set attribute src the link for icon, append span tag in the h2
+    var iconSpan =  document.createElement('span');
+    var iconDisplayEl = document.createElement('img');
+    var iconCode = data.list[0].weather[0].icon;
+    var iconUrl = "http://openweathermap.org/img/wn/" + iconCode + "@2x.png";
+    iconDisplayEl.setAttribute('src', iconUrl);
+    iconSpan.appendChild(iconDisplayEl);
+    cityDisplayEl.appendChild(iconSpan);
+    
     // Create h3 tag, place text temperature in Fahrenheit, append tag in the h3            
     var tempDisplayEl = document.createElement('h4');
-    tempDisplayEl.textContent = 'Temp: ' + kelvinToFahrenheit(data.list[0].main.temp) + ' \u{2109}'
-    todayContainerEl.appendChild(tempDisplayEl)
+    tempDisplayEl.textContent = 'Temp: ' + kelvinToFahrenheit(data.list[0].main.temp) + ' \u{2109}';
+    todayContainerEl.appendChild(tempDisplayEl);
 
     // Create h3 tag, place text wind in MPH, append tag in the h3 
     var windDisplayEl = document.createElement('h4');
-    windDisplayEl.textContent = 'Wind: ' + mpsToMph(data.list[0].wind.speed) + ' MPH'
-    todayContainerEl.appendChild(windDisplayEl)
+    windDisplayEl.textContent = 'Wind: ' + mpsToMph(data.list[0].wind.speed) + ' MPH';
+    todayContainerEl.appendChild(windDisplayEl);
 
     // Create h3 tag, place text humidity percentage, append tag in the h3 
     var humidityDisplayEl = document.createElement('h4');
-    humidityDisplayEl.textContent = 'Humidity: ' + data.list[0].main.humidity + ' \u{0025}'
-    todayContainerEl.appendChild(humidityDisplayEl)
+    humidityDisplayEl.textContent = 'Humidity: ' + data.list[0].main.humidity + ' \u{0025}';
+    todayContainerEl.appendChild(humidityDisplayEl);
 
 }
 //  Functionality to get users weather data from the input city name
