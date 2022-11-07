@@ -196,7 +196,7 @@ function storeCities(data) {
 
     if (!newCities.includes(newCityName)) {
 
-        // Push in array new city
+        // Push in the beginning of the array new city
         newCities.unshift(newCityName);
         // Set city name in local storage
         localStorage.setItem("newCity", JSON.stringify(newCities));
@@ -204,9 +204,9 @@ function storeCities(data) {
 
     }
     // Empty div that contains button of the cities
-    citiesContainerEl.innerHTML = ""
+    citiesContainerEl.innerHTML = "";
     // Call function to display button of the cities 
-    getInputCities(newCities)
+    getInputCities(newCities);
 
 }
 
@@ -215,11 +215,21 @@ function getInputCities(array) {
 
     for (let i = 0; i < array.length; i++) {
         var newButton = document.createElement('button');
-        newButton.setAttribute('class', 'btn btn-secondary col-12')
+        newButton.setAttribute('class', 'btn btn-secondary col-12 city-btn');
+        newButton.setAttribute('id', array[i]);
         newButton.textContent = array[i];
         citiesContainerEl.appendChild(newButton);
+
+        // Add event listener for each button of the cities
+        newButton.addEventListener('click', function () {
+            var cityStoredName = citiesContainerEl.children[i].getAttribute('id');
+            getUsersLonLat(cityStoredName);
+
+        })
     }
+
 }
 
 // Event listener to submit the city
 cityFormEl.addEventListener('submit', formSubmitCity);
+
